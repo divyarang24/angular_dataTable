@@ -1,0 +1,78 @@
+<!-- <p-table>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>S no</th>
+            <th>Wallet_Address</th>
+            <th>Twitter ID</th>
+            <th>Profile pic</th>
+            <th>nft pic</th>
+            <th>Enroll Time</th>
+            <th>Status</th>
+            
+        </tr>
+    </ng-template>
+    <ng-template >
+        <tr>
+
+            <td >1</td>
+            <td >2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            
+        </tr>
+        
+    </ng-template>
+</p-table> -->
+
+
+<div class="nav">
+    <div class="checkbox">
+
+        <ul>
+           <li *ngFor="let checkbox of checkboxArray">
+                <input type="{{checkbox.type}}"  value={{checkbox.status}}   (change)="onchange($event)">{{checkbox.status}}
+           </li>
+        </ul>
+        
+    </div>
+
+     <div class="search">
+           <input class="from-controll" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search">
+     </div>  
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th style="width: auto !important;" (click)="sort('S_no')">S_no&nbsp;<i class="fa fa-sort"></i></th>
+            <th>Wallet Address</th>
+            <th>Twitter ID</th>
+            <th>Profile pic</th>
+            <th>nft pic</th>
+            <th>Enroll Time</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users | filter:searchText | orderBy: key: reverse | paginate: {itemsPerPage:5,currentPage:p};">
+            <td >{{user.S_no}}</td>
+            <td >{{user.Wallet_Address}}</td>
+            <td >{{user.Twitter_ID}}</td>
+            <td ><img src="{{user.Profile_pic}}"  style="width: 40px;"></td>
+            <td ><img src="{{user.nft_pic}}"  style="width: 40px;"></td>
+            <td >{{user.Enroll_Time}}</td>
+            <td >{{user.Status | titlecase}} </td>
+            
+        </tr>
+        <pagination-controls (pageChange)="p = $event" class="paging"></pagination-controls>
+        <tbody>
+            
+    </table>
+    
+    
+</div>
+
